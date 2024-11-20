@@ -1,0 +1,1 @@
+/* Gestion des films ou séries favoris */
