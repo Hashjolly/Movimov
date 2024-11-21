@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { removeFavorite } from "../app/slices/favoritesSlice";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(savedFavorites);
   }, []);
+
+  const handleRemoveFavorite = (movie) => {
+    const updatedFavorites = favorites.filter((fav) => fav.id !== movie.id);
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    dispatch(removeFavorite(movie));
+  };
 
   return (
     <div className="favorites-page">
@@ -23,6 +33,9 @@ export default function Favorites() {
                 />
               </Link>
               <h3>{movie.title}</h3>
+              <button onClick={() => handleRemoveFavorite(movie)}>
+                Retirer des favoris
+              </button>
             </div>
           ))
         ) : (

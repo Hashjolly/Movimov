@@ -5,12 +5,12 @@ import { Footer } from "./components/Footer";
 import Favorites from "./pages/Favorites";
 import Movies from "./pages/Movies";
 import { MovieDetails } from "./pages/MovieDetails";
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import { useState } from 'react';
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <Provider store={store}>

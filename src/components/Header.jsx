@@ -17,15 +17,26 @@ export function Header() {
     }
   };
 
-
   const colors = useSelector((state) => state.ui);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--main-color", colors.mainColor);
-    document.documentElement.style.setProperty("--second-color", colors.secondColor);
-    document.documentElement.style.setProperty("--third-color", colors.thirdColor);
-    document.documentElement.style.setProperty("--last-color", colors.detailsColor);
+    document.documentElement.style.setProperty(
+      "--main-color",
+      colors.mainColor
+    );
+    document.documentElement.style.setProperty(
+      "--second-color",
+      colors.secondColor
+    );
+    document.documentElement.style.setProperty(
+      "--third-color",
+      colors.thirdColor
+    );
+    document.documentElement.style.setProperty(
+      "--last-color",
+      colors.detailsColor
+    );
   }, [colors]);
 
   return (
@@ -35,11 +46,18 @@ export function Header() {
         <h1 className="logo-text">Movimov</h1>
       </div>
       <nav className="nav">
-        <Link to="/">Accueil</Link>|
-        <Link to="/movies">Films</Link>|
-        <Link to="/about">À propos</Link>
+        <Link to="/">Accueil</Link>|<Link to="/movies">Films</Link>|
+        <Link to="/favorites">Favoris</Link>
         <div id="darkMode">
-          <input type="checkbox" id="darkmode-toggle" onChange={(e) => {colors.darkMode ? dispatch(setLightMode()) : dispatch(setDarkMode())}} />
+          <input
+            type="checkbox"
+            id="darkmode-toggle"
+            onChange={(e) => {
+              colors.darkMode
+                ? dispatch(setLightMode())
+                : dispatch(setDarkMode());
+            }}
+          />
           <label htmlFor="darkmode-toggle"></label>
         </div>
       </nav>
