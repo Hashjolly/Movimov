@@ -115,6 +115,24 @@
   label:active:after {
     width: 30px;
   }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar input {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .search-bar button {
+    padding: 5px 10px;
+    background-color: #721b65;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
   
   /* Responsive Navbar */
   @media (max-width: 768px) {

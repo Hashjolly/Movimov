@@ -1,11 +1,22 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setDarkMode, setLightMode } from "../app/slices/uiSlice";
 import "../styles/components/Header.css";
 import logo from "../../assets/logo.png";
+import { useState } from "react";
 
 export function Header() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      navigate(`/movies?search=${encodeURIComponent(searchTerm)}`);
+    }
+  };
+
 
   const colors = useSelector((state) => state.ui);
   const dispatch = useDispatch();
@@ -32,6 +43,15 @@ export function Header() {
           <label htmlFor="darkmode-toggle"></label>
         </div>
       </nav>
+      <form className="search-bar" onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Recherchez un film ou une série..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button type="submit">Rechercher</button>
+      </form>
     </header>
   );
 }

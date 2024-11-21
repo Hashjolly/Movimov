@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-const moviesSlice = createSlice({
-  name: "movies",
+export const moviesSlice = createSlice({
+  name: 'movies',
   initialState: {
     currentPage: 1,
   },
@@ -13,4 +13,5 @@ const moviesSlice = createSlice({
 });
 
 export const { setPage } = moviesSlice.actions;
+
 export default moviesSlice.reducer;
