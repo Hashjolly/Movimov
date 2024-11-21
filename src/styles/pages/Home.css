@@ -33,7 +33,7 @@ body {
   }
   
   .nav a:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
   
   .introduction {
@@ -41,7 +41,7 @@ body {
     align-items: center;
     justify-content: space-around;
     padding: 3rem 2rem;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
+    background: linear-gradient(to right, var(--third-color), var(--main-color));
     color: white;
   }
   
@@ -51,8 +51,8 @@ body {
   }
   
   .start-button {
-    background-color: #ff9800;
-    color: white;
+    background-color: var(--last-color);
+    color: var(--second-color);
     border: none;
     padding: 0.8rem 1.5rem;
     font-size: 1.2rem;
@@ -62,54 +62,34 @@ body {
   }
   
   .start-button:hover {
-    background-color: #e68900;
-  }
-  
-  .search-bar {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-  
-  .search-bar input {
-    width: 100%;
-    max-width: 300px;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .search-bar button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #32213a;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .search-bar button:hover {
-    background-color: #d4aa7d;
-    color: #32213a;
+    color: var(--main-color);
+    background-color: var(--third-color);
   }
   
   /* About Section */
   .about {
+    display: flex;
+    flex-direction: column;
     padding: 2rem;
-    background-color: #f4f4f4;
+    background-color: var(--main-color);
+    color: var(--second-color);
   }
   
   .about h2 {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .about p {
+    margin: 0 5rem 1rem 5rem;
   }
   
   /* Features Section */
   .features {
+    display: flex;
+    flex-direction: column;
     padding: 2rem;
+    background: linear-gradient(to left, var(--third-color), var(--main-color));
+    color: var(--second-color);
   }
   
   .features-grid {
@@ -124,6 +104,6 @@ body {
   }
   
   .feature h3 {
-    color: #6a11cb;
+    color: var(--second-color);
   }
   

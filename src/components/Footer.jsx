@@ -3,8 +3,10 @@ import "../styles/components/Footer.css";
 
 export function Footer() {
   return (
-    <footer>
-      <p>&copy; 2024 Movie Manager</p>
+    <footer class="footer">
+      <div class="footer-bottom">
+        <p>&copy; 2024 Movimov. Tous droits réservés.</p>
+      </div>
     </footer>
   );
 }
