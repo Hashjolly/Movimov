@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import "../styles/components/Header.css";
 import logo from "../../assets/logo.png";
+import { useSelector, useDispatch } from 'react-redux';
+import { setDarkMode, setLightMode } from '../app/slices/uiSlice';
 
 export function Header() {
+
+  const colors = useSelector((state) => state.ui);
+  const dispatch = useDispatch();
+
   return (
     <header style={{ backgroundColor: colors.mainColor}} className="header">
       <div className="logo-container">

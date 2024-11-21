@@ -6,6 +6,7 @@ import Movies from "./pages/Movies";
 import { MovieDetails } from "./pages/MovieDetails";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import { useState } from 'react';
 
 function App() {
   const [count, setCount] = useState(0)
