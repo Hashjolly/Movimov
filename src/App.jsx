@@ -1,24 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import Movies from "./pages/Movies";
+import { MovieDetails } from "./pages/MovieDetails";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <BrowserRouter>
-        <nav>
-          <Link to="/">Accueil</Link> | <Link to="/user/1">Utilisateur 1</Link> | <Link to="/user/2">Utilisateur 2</Link>
-        </nav>
-        <Routes>
-          <Route path="/" Component={Home} />
-          <Route path="/user/:userId" Component={User} />
-        </Routes>
-      </BrowserRouter>
-    </>
-  )
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="*" element={<div>Page non trouvée</div>} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
