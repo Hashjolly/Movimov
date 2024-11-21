@@ -1,3 +1,11 @@
+
+:root {
+  --main-color: #EEEEEE;
+  --second-color: #111111;
+  --third-color: #86629A;
+  --last-color: #D4AA7D;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;

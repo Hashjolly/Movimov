@@ -16,11 +16,15 @@ export const uiSlice = createSlice({
         state.darkMode = true;
         state.mainColor = import.meta.env.VITE_SECOND_COLOR;
         state.secondColor = import.meta.env.VITE_MAIN_COLOR;
+        state.thirdColor = import.meta.env.VITE_FOURTH_COLOR;
+        state.detailsColor = import.meta.env.VITE_THIRD_COLOR;
     },
     setLightMode: (state) => {
         state.darkMode = false;
         state.mainColor = import.meta.env.VITE_MAIN_COLOR;
         state.secondColor = import.meta.env.VITE_SECOND_COLOR;
+        state.thirdColor = import.meta.env.VITE_THIRD_COLOR;
+        state.detailsColor = import.meta.env.VITE_FOURTH_COLOR;
     },
   }
 });

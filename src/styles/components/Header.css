@@ -3,10 +3,19 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    color: rgb(44, 44, 44);
+    background-color: var(--main-color);
     position: sticky;
     top: 0;
     z-index: 1000;
+  }
+
+  h1 {
+    color: var(--second-color);
+  }
+
+  section {
+    display: flex;
+    align-items: center;
   }
   
   /* Logo Section */
@@ -16,9 +25,9 @@
   }
   
   .logo-image {
-    width: 50px;
-    height: 50px;
-    margin-right: 1rem;
+    height: auto;
+    width: 60px;
+    margin: 0 1.5rem;
   }
   
   .logo-text {
@@ -29,32 +38,38 @@
   /* Navigation Links */
   .nav {
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 3em;
+    padding-right: 2em;
+    color: var(--third-color);
   }
   
   .nav a {
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.3s ease;
+    font-weight: 700;
+    color: var(--third-color);
   }
   
   .nav a:hover {
-    color: #ff9800;
+    text-decoration: none;
+    color: var(--last-color);
   }
   
   .nav Link {
     text-decoration: none;
-    color: white;
     font-size: 1rem;
     transition: color 0.3s ease;
   }
   
   .nav Link:hover {
-    color: #ff9800;
+    color: var(--last-color);
   }
 
   #darkMode {
-    padding-bottom: 15px;
+    padding-bottom: 18px;
+    padding-left: 2em;
   }
 
   input[type="checkbox"] {
@@ -106,7 +121,7 @@
     .nav {
       display: none; /* Cacher la navbar sur mobile */
       flex-direction: column;
-      background-color: #282c34;
+      background-color:  var(--main-color);
       position: absolute;
       top: 100%;
       right: 0;
