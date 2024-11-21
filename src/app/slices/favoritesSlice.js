@@ -1,9 +1,7 @@
-/* Gestion des films ou séries favoris */
+import { createSlice } from '@reduxjs/toolkit';
 
-import { createSlice } from "@reduxjs/toolkit";
-
-const favoritesSlice = createSlice({
-  name: "favorites",
+export const favoritesSlice = createSlice({
+  name: 'favorites',
   initialState: [],
   reducers: {
     addFavorite: (state, action) => {
@@ -16,4 +14,5 @@ const favoritesSlice = createSlice({
 });
 
 export const { addFavorite, removeFavorite } = favoritesSlice.actions;
+
 export default favoritesSlice.reducer;

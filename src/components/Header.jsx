@@ -23,7 +23,7 @@ export function Header() {
       <nav className="nav">
         <Link to="/">Accueil</Link>
         <Link to="/movies">Films</Link>
-        <Link to="/about">À propos</Link>
+        <Link to="/favorites">Favoris</Link>
       </nav>
       <form className="search-bar" onSubmit={handleSearch}>
         <input
