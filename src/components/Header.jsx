@@ -5,6 +5,7 @@ import { setDarkMode, setLightMode } from "../app/slices/uiSlice";
 import "../styles/components/Header.css";
 import logo from "../../assets/logo.png";
 import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
 export function Header() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -62,14 +63,32 @@ export function Header() {
         </div>
       </nav>
       <form className="search-bar" onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Recherchez un film ou une série..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button type="submit">Rechercher</button>
+        <div className="search-input-container">
+          <FaSearch className="search-icon" onClick={handleSearch} />
+          <input
+            type="text"
+            placeholder="Recherchez un film ou une série..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
       </form>
+      <nav className="nav">
+        <Link to="/">Accueil</Link>|<Link to="/movies">Films</Link>|
+        <Link to="/favorites">Favoris</Link>
+        <div id="darkMode">
+          <input
+            type="checkbox"
+            id="darkmode-toggle"
+            onChange={(e) => {
+              colors.darkMode
+                ? dispatch(setLightMode())
+                : dispatch(setDarkMode());
+            }}
+          />
+          <label htmlFor="darkmode-toggle"></label>
+        </div>
+      </nav>
     </header>
   );
 }

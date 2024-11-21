@@ -1,8 +1,9 @@
 /* Footer */
   .footer {
     padding: 1rem;
-    background-color: #282c34;
-    color: white;
+    background-color: var(--main-color);
+    color: var(--second-color);
+    text-align: center;
   }
   
   .footer a {
