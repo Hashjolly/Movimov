@@ -4,6 +4,7 @@
     background-color: var(--main-color);
     color: var(--second-color);
     text-align: center;
+    border-top: 2px solid var(--third-color);
   }
   
   .footer a {

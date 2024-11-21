@@ -1,6 +1,11 @@
 .movies-page {
   padding: 20px;
-  background-color: #181818; 
+  background-color: var(--main-color); 
+}
+
+.movies-page h1 {
+  text-align: center;
+  margin-bottom: 2em;
 }
 
 .movies-grid {
@@ -11,8 +16,8 @@
 }
 
 .movie-card {
-  background-color: #32213A;
-  color: #D4AA7D;
+  background-color: var(--second-color);
+  color: var(--third-color);
   padding: 15px;
   text-align: center;
   border-radius: 8px;
@@ -31,9 +36,9 @@
 }
 
 button {
-  background-color: #D4AA7D;
+  background-color: var(--main-color);
   border: none;
-  color: #32213A;
+  color: var(--second-color);
   padding: 10px 15px;
   margin-top: 10px;
   cursor: pointer;
@@ -42,7 +47,7 @@ button {
 }
 
 button:hover {
-  background-color: #A88656;
+  background-color: var(--last-color);
 }
 
 .pagination {
@@ -55,7 +60,8 @@ button:hover {
 .pagination button {
   padding: 10px 20px;
   background-color: #32213A;
-  color: #D4AA7D;
+  background-color: var(--second-color);
+  color: var(--main-color);
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -67,5 +73,5 @@ button:hover {
 }
 
 .pagination button:hover:not(:disabled) {
-  background-color: #A88656;
+  background-color: var(--third-color);
 }

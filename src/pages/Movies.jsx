@@ -64,7 +64,7 @@ export default function Movies() {
 
   return (
     <div className="movies-page">
-      <h1>Films Populaires</h1>
+      <h1>{searchQuery ? `Résultats de recherche : "${searchQuery}"` : "Films Populaires"}</h1>
       <div className="movies-grid">
         {Array.isArray(movies) && movies.length > 0 ? (
           movies.map((movie) => (
