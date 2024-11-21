@@ -95,33 +95,3 @@ body {
     color: #32213a;
   }
   
-  /* About Section */
-  .about {
-    padding: 2rem;
-    background-color: #f4f4f4;
-  }
-  
-  .about h2 {
-    margin-bottom: 1rem;
-  }
-  
-  /* Features Section */
-  .features {
-    padding: 2rem;
-  }
-  
-  .features-grid {
-    display: flex;
-    justify-content: space-around;
-    gap: 1rem;
-  }
-  
-  .feature {
-    max-width: 300px;
-    text-align: left;
-  }
-  
-  .feature h3 {
-    color: #6a11cb;
-  }
-  

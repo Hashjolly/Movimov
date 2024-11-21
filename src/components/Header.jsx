@@ -1,8 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/components/Header.css";
 import logo from "../../assets/logo.png";
+import { useState } from "react";
 
 export function Header() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      navigate(`/movies?search=${encodeURIComponent(searchTerm)}`);
+    }
+  };
+
   return (
     <header className="header">
       <div className="logo-container">
@@ -14,6 +25,15 @@ export function Header() {
         <Link to="/movies">Films</Link>
         <Link to="/about">À propos</Link>
       </nav>
+      <form className="search-bar" onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Recherchez un film ou une série..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button type="submit">Rechercher</button>
+      </form>
     </header>
   );
 }

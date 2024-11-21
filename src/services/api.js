@@ -8,7 +8,13 @@ const api = axios.create({
   },
 });
 
-export const searchMovies = (query) =>
-  api.get("/search/movie", { params: { query } });
+export const searchMovies = (query) => {
+  return api
+    .get("/search/movie", { params: { query } })
+    .catch((error) => {
+      console.error("Erreur de recherche : ", error);
+      return { data: { results: [] } }; 
+    });
+};
 
 export default api;

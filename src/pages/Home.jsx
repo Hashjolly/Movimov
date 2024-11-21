@@ -1,18 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/pages/Home.css";
 
 export function Home() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchTerm.trim() !== "") {
-      navigate(`/movies?search=${encodeURIComponent(searchTerm)}`);
-    }
-  };
-
   return (
     <div className="home-container">
       <section className="introduction">
@@ -23,16 +13,9 @@ export function Home() {
             de films, séries et documentaires. Découvrez des trésors cachés et
             créez vos listes personnalisées !
           </p>
-          <button className="start-button">Commencer maintenant</button>
-          <form className="search-bar" onSubmit={handleSearch}>
-            <input
-              type="text"
-              placeholder="Recherchez un film ou une série..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button type="submit">Rechercher</button>
-          </form>
+          <Link to="/movies">
+            <button className="start-button">Commencer maintenant</button>
+          </Link>
         </div>
         <div className="introduction-image">
           <img
