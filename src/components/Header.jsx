@@ -42,26 +42,12 @@ export function Header() {
 
   return (
     <header className="header">
-      <div className="logo-container">
-        <img src={logo} alt="Movimov Logo" className="logo-image" />
-        <h1 className="logo-text">Movimov</h1>
-      </div>
-      <nav className="nav">
-        <Link to="/">Accueil</Link>|<Link to="/movies">Films</Link>|
-        <Link to="/favorites">Favoris</Link>
-        <div id="darkMode">
-          <input
-            type="checkbox"
-            id="darkmode-toggle"
-            onChange={(e) => {
-              colors.darkMode
-                ? dispatch(setLightMode())
-                : dispatch(setDarkMode());
-            }}
-          />
-          <label htmlFor="darkmode-toggle"></label>
+      <Link to="/">
+        <div className="logo-container">
+          <img src={logo} alt="Movimov Logo" className="logo-image" />
+          <h1 className="logo-text">Movimov</h1>
         </div>
-      </nav>
+      </Link>
       <form className="search-bar" onSubmit={handleSearch}>
         <div className="search-input-container">
           <FaSearch className="search-icon" onClick={handleSearch} />

@@ -9,7 +9,7 @@ import "../styles/pages/Movies.css";
 
 export default function Movies() {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Ajout d'un état de chargement
   const currentPage = useSelector((state) => state.movies.currentPage);
   const favorites = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
@@ -29,14 +29,17 @@ export default function Movies() {
           });
         }
 
+        // Log de la réponse pour vérifier ce qui est renvoyé
+        console.log("Réponse de l'API : ", response.data);
+
         if (response.data && response.data.results) {
           setMovies(response.data.results);
         } else {
-          setMovies([]);
+          setMovies([]); // Aucune donnée trouvée
         }
       } catch (error) {
         console.error("Erreur lors de la récupération des films :", error);
-        setMovies([]);
+        setMovies([]); // En cas d'erreur, on vide la liste des films
       }
       setLoading(false);
     };
@@ -48,13 +51,12 @@ export default function Movies() {
 
   const toggleFavorite = (movie) => {
     const isFavorite = favorites.find((fav) => fav.id === movie.id);
-
     if (isFavorite) {
       dispatch(removeFavorite(movie));
     } else {
       dispatch(addFavorite(movie));
     }
-
+    
     // Sauvegarder les favoris dans le localStorage
     const updatedFavorites = isFavorite
       ? favorites.filter((fav) => fav.id !== movie.id)

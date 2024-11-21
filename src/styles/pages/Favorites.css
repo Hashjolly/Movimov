@@ -1,0 +1,67 @@
+.favorites-page {
+    padding: 20px;
+    background-color: var(--main-color); /* Couleur principale */
+    color: var(--second-color); /* Couleur de texte */
+    min-height: 100vh;
+  }
+  
+  .favorites-page h1 {
+    text-align: center;
+    margin-bottom: 2em;
+    color: var(--second-color); /* Couleur d'accent */
+  }
+  
+  .favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .movie-card {
+    background-color: var(--second-color);
+    color: var(--third-color);
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  
+  .movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .movie-card img {
+    border-radius: 4px;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .movie-card h3 {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: var(--third-color);
+  }
+  
+  .movie-card button {
+    background-color: var(--main-color);
+    border: none;
+    color: var(--second-color);
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .movie-card button:hover {
+    background-color: var(--last-color); /* Couleur d'accent pour les interactions */
+  }
+  
+  .favorites-page p {
+    text-align: center;
+    color: var(--third-color);
+    font-size: 1.2rem;
+  }
+  

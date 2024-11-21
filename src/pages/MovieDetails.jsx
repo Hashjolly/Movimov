@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import "../styles/pages/MovieDetails.css";
 
 export function MovieDetails() {
   const { id } = useParams();

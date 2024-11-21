@@ -8,6 +8,7 @@ import { MovieDetails } from "./pages/MovieDetails";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { useState } from "react";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
-          <Route path="*" element={<div>Page non trouvée</div>} />
+          <Route path="*" element={<NotFound />} />
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
         <Footer />

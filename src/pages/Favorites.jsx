@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeFavorite } from "../app/slices/favoritesSlice";
+import "../styles/pages/Favorites.css";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
