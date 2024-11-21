@@ -33,6 +33,16 @@ header {
     gap: 1.5rem;
   }
   
+  .nav a {
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav a:hover {
+    color: #ff9800;
+  }
+  
   .nav Link {
     text-decoration: none;
     color: white;

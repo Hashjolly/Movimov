@@ -1,28 +1,14 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
+const api = axios.create({
+  baseURL: import.meta.env.VITE_TMDB_BASE_URL,
   params: {
-    api_key: import.meta.env.VITE_REACT_APP_TMDB_API_KEY,
+    api_key: import.meta.env.VITE_TMDB_API_KEY,
+    language: "fr-FR",
   },
 });
 
-export const getMovies = async () => {
-  try {
-    const response = await axiosInstance.get("/discover/movie");
-    return response.data.results;
-  } catch (error) {
-    console.error("Erreur lors de la récupération des films", error);
-    throw error;
-  }
-};
+export const searchMovies = (query) =>
+  api.get("/search/movie", { params: { query } });
 
-export const getMovieDetails = async (id) => {
-  try {
-    const response = await axiosInstance.get(`/movie/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error("Erreur lors de la récupération du film", error);
-    throw error;
-  }
-};
+export default api;

@@ -1,48 +1,66 @@
-import React, { useState, useEffect } from "react";
-import { getMovies } from "../services/api";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPage } from "../app/slices/moviesSlice";
+import { addFavorite, removeFavorite } from "../app/slices/favoritesSlice";
+import { Link } from "react-router-dom";
+import Pagination from "../components/Pagination";
+import SearchBar from "../components/SearchBar";
+import api, { searchMovies } from "../services/api";
+import "./../styles/pages/Movies.css";
 
-const Movies = () => {
+export default function Movies() {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const currentPage = useSelector((state) => state.movies.currentPage);
+  const favorites = useSelector((state) => state.favorites);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const movieData = await getMovies();
-        setMovies(movieData);
-        setLoading(false);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des films", error);
-        setLoading(false);
-      }
-    };
+    api
+      .get("/movie/popular", { params: { page: currentPage } })
+      .then((response) => setMovies(response.data.results))
+      .catch((error) => console.error("Erreur :", error));
+  }, [currentPage]);
 
-    fetchMovies();
-  }, []);
+  const handlePageChange = (newPage) => dispatch(setPage(newPage));
 
-  if (loading) {
-    return <div>Chargement...</div>;
-  }
+  const toggleFavorite = (movie) => {
+    const isFavorite = favorites.find((fav) => fav.id === movie.id);
+    if (isFavorite) {
+      dispatch(removeFavorite(movie));
+    } else {
+      dispatch(addFavorite(movie));
+    }
+  };
+
+  const handleSearch = (query) => {
+    searchMovies(query)
+      .then((response) => setMovies(response.data.results))
+      .catch((error) => console.error("Erreur lors de la recherche :", error));
+  };
 
   return (
-    <div className="movies">
-      <h1>Films et Séries</h1>
-      <ul>
+    <div className="movies-page">
+      <h1>Films Populaires</h1>
+      <SearchBar onSearch={handleSearch} />
+      <div className="movies-grid">
         {movies.map((movie) => (
-          <li key={movie.id}>
-            <h2>{movie.title}</h2>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              width="200"
-            />
-            <p>{movie.overview}</p>
-            <a href={`/movies/${movie.id}`}>Voir les détails</a>
-          </li>
+          <div className="movie-card" key={movie.id}>
+            <Link to={`/movie/${movie.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                alt={movie.title}
+              />
+            </Link>
+            <h3>{movie.title}</h3>
+            <button onClick={() => toggleFavorite(movie)}>
+              {favorites.find((fav) => fav.id === movie.id)
+                ? "Retirer des favoris"
+                : "Ajouter aux favoris"}
+            </button>
+          </div>
         ))}
-      </ul>
+      </div>
+      <Pagination currentPage={currentPage} onPageChange={handlePageChange} />
     </div>
   );
-};
-
-export default Movies;
+}

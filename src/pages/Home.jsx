@@ -1,6 +1,18 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/pages/Home.css";
 
 export function Home() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      navigate(`/movies?search=${encodeURIComponent(searchTerm)}`);
+    }
+  };
+
   return (
     <div className="home-container">
       <section className="introduction">
@@ -12,10 +24,19 @@ export function Home() {
             créez vos listes personnalisées !
           </p>
           <button className="start-button">Commencer maintenant</button>
+          <form className="search-bar" onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder="Recherchez un film ou une série..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button type="submit">Rechercher</button>
+          </form>
         </div>
         <div className="introduction-image">
           <img
-            src="../../assets/images/home/popcorn_cinema_pic.png"
+            src="/assets/images/home/popcorn_cinema_pic.png"
             alt="Popcorn et écran de cinéma"
           />
         </div>
@@ -52,13 +73,6 @@ export function Home() {
           </div>
         </div>
       </section>
-
-      <footer id="contact" className="footer">
-        <p>&copy; 2024 Movimov. Tous droits réservés.</p>
-        <p>
-          <a href="mailto:contact@Movimov.com">contact@Movimov.com</a>
-        </p>
-      </footer>
     </div>
   );
 }

@@ -1,11 +1,10 @@
 import React from "react";
+import "../styles/components/Footer.css";
 
-const Footer = () => {
+export function Footer() {
   return (
     <footer>
       <p>&copy; 2024 Movie Manager</p>
     </footer>
   );
-};
-
-export default Footer;
+}
