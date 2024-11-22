@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "homepage": "https://hashjolly.github.io/movimov/",
+  "homepage": "https://hashjolly.github.io/Movimov/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
