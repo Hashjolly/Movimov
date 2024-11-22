@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/pages/Home.css";
+import popcornImage from '../../assets/popcorn.png';
 
 export function Home() {
   return (
@@ -19,7 +20,7 @@ export function Home() {
         </div>
         <div className="introduction-image">
           <img
-            src="/assets/popcorn.png"
+            src={popcornImage}
             alt="Popcorn et écran de cinéma"
           />
         </div>
