@@ -19,7 +19,7 @@ export function Home() {
         </div>
         <div className="introduction-image">
           <img
-            src="/assets/popcorn_cinema_pic.png"
+            src="/assets/popcorn.png"
             alt="Popcorn et écran de cinéma"
           />
         </div>
