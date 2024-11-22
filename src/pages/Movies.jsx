@@ -2,19 +2,29 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPage } from "../app/slices/moviesSlice";
 import { addFavorite, removeFavorite } from "../app/slices/favoritesSlice";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Pagination from "../components/Pagination";
 import api, { searchMovies } from "../services/api";
 import "../styles/pages/Movies.css";
 
 export default function Movies() {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true); // Ajout d'un état de chargement
+  const [loading, setLoading] = useState(true);
   const currentPage = useSelector((state) => state.movies.currentPage);
   const favorites = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
   const searchQuery = new URLSearchParams(location.search).get("search");
+  const urlPage =
+    parseInt(new URLSearchParams(location.search).get("page")) || 1;
+
+  // Synchroniser l'état global avec l'URL
+  useEffect(() => {
+    if (currentPage !== urlPage) {
+      dispatch(setPage(urlPage));
+    }
+  }, [urlPage, currentPage, dispatch]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -35,11 +45,11 @@ export default function Movies() {
         if (response.data && response.data.results) {
           setMovies(response.data.results);
         } else {
-          setMovies([]); // Aucune donnée trouvée
+          setMovies([]);
         }
       } catch (error) {
         console.error("Erreur lors de la récupération des films :", error);
-        setMovies([]); // En cas d'erreur, on vide la liste des films
+        setMovies([]);
       }
       setLoading(false);
     };
@@ -47,7 +57,10 @@ export default function Movies() {
     fetchMovies();
   }, [currentPage, searchQuery]);
 
-  const handlePageChange = (newPage) => dispatch(setPage(newPage));
+  const handlePageChange = (newPage) => {
+    dispatch(setPage(newPage));
+    navigate(`?page=${newPage}${searchQuery ? `&search=${searchQuery}` : ""}`);
+  };
 
   const toggleFavorite = (movie) => {
     const isFavorite = favorites.find((fav) => fav.id === movie.id);
@@ -56,7 +69,7 @@ export default function Movies() {
     } else {
       dispatch(addFavorite(movie));
     }
-    
+
     // Sauvegarder les favoris dans le localStorage
     const updatedFavorites = isFavorite
       ? favorites.filter((fav) => fav.id !== movie.id)
@@ -70,7 +83,11 @@ export default function Movies() {
 
   return (
     <div className="movies-page">
-      <h1>{searchQuery ? `Résultats de recherche : "${searchQuery}"` : "Films Populaires"}</h1>
+      <h1>
+        {searchQuery
+          ? `Résultats de recherche : "${searchQuery}"`
+          : "Films Populaires"}
+      </h1>
       <div className="movies-grid">
         {Array.isArray(movies) && movies.length > 0 ? (
           movies.map((movie) => (
