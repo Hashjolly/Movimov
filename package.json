@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "homepage": "https://hashjolly.github.io/TP-du-20-10-2024-Cr-ation-d-une-Application-React-dynamique/",
+  "homepage": "https://hashjolly.github.io/movimov/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
