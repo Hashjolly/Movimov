@@ -10,6 +10,7 @@ import "../styles/pages/Movies.css";
 export default function Movies() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState(1);
   const currentPage = useSelector((state) => state.movies.currentPage);
   const favorites = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
@@ -39,17 +40,17 @@ export default function Movies() {
           });
         }
 
-        // Log de la réponse pour vérifier ce qui est renvoyé
-        console.log("Réponse de l'API : ", response.data);
-
         if (response.data && response.data.results) {
           setMovies(response.data.results);
+          setTotalPages(response.data.total_pages || 1);
         } else {
           setMovies([]);
+          setTotalPages(1);
         }
       } catch (error) {
         console.error("Erreur lors de la récupération des films :", error);
         setMovies([]);
+        setTotalPages(1);
       }
       setLoading(false);
     };
@@ -58,6 +59,9 @@ export default function Movies() {
   }, [currentPage, searchQuery]);
 
   const handlePageChange = (newPage) => {
+    if (newPage < 1 || newPage > totalPages) {
+      return;
+    }
     dispatch(setPage(newPage));
     navigate(`?page=${newPage}${searchQuery ? `&search=${searchQuery}` : ""}`);
   };
